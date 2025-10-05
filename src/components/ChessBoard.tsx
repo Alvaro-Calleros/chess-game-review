@@ -387,7 +387,7 @@ export const ChessBoard = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-center mb-8">
           <img 
-            src="/logo.svg" 
+            src="public/logo.svg" 
             alt="Chess Logo" 
             className="w-12 h-12 mr-4"
           />
