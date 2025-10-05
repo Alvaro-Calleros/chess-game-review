@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 20% 97%;
+    --foreground: 30 10% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 30 10% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 10% 15%;
+
+    --primary: 30 25% 40%;
+    --primary-foreground: 40 20% 97%;
+
+    --secondary: 40 15% 85%;
+    --secondary-foreground: 30 10% 15%;
+
+    --muted: 40 15% 90%;
+    --muted-foreground: 30 8% 45%;
+
+    --accent: 45 60% 65%;
+    --accent-foreground: 30 10% 15%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 30 25% 40%;
+
+    --radius: 0.5rem;
+
+    /* Chess-specific colors */
+    --board-light: 37 44% 83%;
+    --board-dark: 30 35% 55%;
+    --highlight-move: 60 70% 70%;
+    --highlight-selected: 45 90% 60%;
+    --highlight-check: 0 80% 60%;
+    --highlight-last-move: 50 60% 75%;
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 30 15% 12%;
+    --foreground: 40 20% 90%;
+
+    --card: 30 15% 15%;
+    --card-foreground: 40 20% 90%;
+
+    --popover: 30 15% 15%;
+    --popover-foreground: 40 20% 90%;
+
+    --primary: 40 20% 85%;
+    --primary-foreground: 30 15% 12%;
+
+    --secondary: 30 10% 25%;
+    --secondary-foreground: 40 20% 90%;
+
+    --muted: 30 10% 25%;
+    --muted-foreground: 40 15% 60%;
+
+    --accent: 45 60% 55%;
+    --accent-foreground: 40 20% 90%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 10% 25%;
+    --input: 30 10% 25%;
+    --ring: 40 20% 85%;
+
+    /* Chess-specific colors for dark mode */
+    --board-light: 37 30% 60%;
+    --board-dark: 30 25% 40%;
+    --highlight-move: 60 60% 50%;
+    --highlight-selected: 45 80% 50%;
+    --highlight-check: 0 70% 50%;
+    --highlight-last-move: 50 50% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
