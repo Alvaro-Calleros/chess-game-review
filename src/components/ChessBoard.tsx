@@ -386,11 +386,7 @@ export const ChessBoard = () => {
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-center mb-8">
-          <img 
-            src="public/logo.svg" 
-            alt="Chess Logo" 
-            className="w-12 h-12 mr-4"
-          />
+          
           <h1 className="text-4xl font-bold text-center text-foreground">
             Chess Game Review
           </h1>
