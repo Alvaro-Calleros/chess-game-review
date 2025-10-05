@@ -39,13 +39,16 @@ jobs:
       run: cp dist/index.html dist/404.html
       
     - name: Setup Pages
+      if: github.event_name == 'push'
       uses: actions/configure-pages@v4
       
     - name: Upload artifact
+      if: github.event_name == 'push'
       uses: actions/upload-pages-artifact@v3
       with:
         path: './dist'
         
     - name: Deploy to GitHub Pages
       id: deployment
+      if: github.event_name == 'push'
       uses: actions/deploy-pages@v4
