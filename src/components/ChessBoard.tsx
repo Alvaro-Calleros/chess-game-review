@@ -36,6 +36,7 @@ export const ChessBoard = () => {
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [promotionSquare, setPromotionSquare] = useState<Position | null>(null);
   const [promotionColor, setPromotionColor] = useState<PieceColor>('white');
+  const [promotionFromSquare, setPromotionFromSquare] = useState<Position | null>(null);
   const [gameStatus, setGameStatus] = useState<string | null>(null);
 
   const lastMove = moveHistory.length > 0 ? moveHistory[moveHistory.length - 1] : null;
@@ -106,6 +107,7 @@ export const ChessBoard = () => {
         if (!promoteTo) {
           setPromotionSquare(to);
           setPromotionColor(piece.color);
+          setPromotionFromSquare(from);
           // Move piece temporarily
           newBoard[to.row][to.col] = { ...piece, hasMoved: true };
           newBoard[from.row][from.col] = null;
@@ -153,6 +155,7 @@ export const ChessBoard = () => {
     setSelectedSquare(null);
     setValidMoves([]);
     setPromotionSquare(null);
+    setPromotionFromSquare(null);
     
     // Switch turn and check game status
     const nextTurn = currentTurn === 'white' ? 'black' : 'white';
@@ -312,10 +315,29 @@ export const ChessBoard = () => {
   }, []);
 
   const handlePromotion = useCallback((pieceType: PieceType) => {
-    if (promotionSquare && selectedSquare) {
-      executeMove(selectedSquare, promotionSquare, pieceType);
+    if (promotionSquare) {
+      // Replace the pawn with the chosen piece
+      const newBoard = board.map(row => [...row]);
+      newBoard[promotionSquare.row][promotionSquare.col] = {
+        type: pieceType,
+        color: promotionColor,
+        hasMoved: true
+      };
+      
+      setBoard(newBoard);
+      setPromotionSquare(null);
+      setPromotionFromSquare(null);
+      
+      // Switch turn
+      const nextTurn = currentTurn === 'white' ? 'black' : 'white';
+      setCurrentTurn(nextTurn);
+      
+      // Check game status
+      if (!checkGameStatus(newBoard, nextTurn)) {
+        setGameStatus(null);
+      }
     }
-  }, [promotionSquare, selectedSquare, executeMove]);
+  }, [promotionSquare, promotionColor, board, currentTurn, checkGameStatus]);
 
   const renderBoard = () => {
     const rows = [];
